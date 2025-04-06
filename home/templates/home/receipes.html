@@ -1,23 +1,83 @@
 {% extends "base.html" %}
 {% block start %}
 
-<div class="container mt-5">
-    <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+<div class="container mt-100">
+    <form class="col-20 mx-auto card p-3 danger-lg" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <h2>Add Patient</h2>
+        <h2 style:"color:black">Patient Detals:</h2>
         <hr>
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Case number</label>
-          <input name="case_number" type="text" class="form-control">
+          <label for="exampleInputEmail1" class="form-label">Case number:</label>
+          <input name="case_number" type="text" class="inline">
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Name:</label>
+          <input name="receipe_name" type="text" class="inline">
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">S/D/W/o:</label>
+          <input name="relation" type="text" class="inline">
         </div>
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Patient name</label>
-          <input name="receipe_name" type="text" class="form-control">
+          <label for="exampleInputEmail1" class="form-label">Gender:</label>
+          <select name="gender" type="text" class="inline">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
         </div>
+        
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Case Description</label>
+          <label for="exampleInputEmail1" class="form-label">Status:</label>
+          <select name="status" type="drop" class="inline">
+            <option value="Married">Married</option>
+            <option value="Single">Single</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Phone:</label>
+          <input name="phone" type="phone2numeric" class="inline">
+        </div>
+        
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Occupation:</label>
+          <input name="occupation" type="text" class="inline">
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Address:</label>
+          <input name="address" type="text" class="inline">
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Religion:</label>
+          <input name="religion" type="text" class="inline">
+        </div>
+        
+        <h2 style:"color:black">Case Details:</h2>
+        <hr>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Presenting Complaints</label>
           <textarea class="form-control" name="receipe_description"></textarea>
         </div>
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">past Medical History</label>
+          <textarea class="form-control" name="medical_history"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Family History</label>
+          <textarea class="form-control" name="family_history"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Life Space Investigation</label>
+          <textarea class="form-control" name="investigation"></textarea>
+        </div>
+
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Patient Image</label>
           <input name="receipe_image" type="file" class="form-control">
@@ -48,18 +108,39 @@
             <th scope="col">#</th>
             <th scope="col">Case number</th>
             <th scope="col">Patient Name</th>
+            <th scope="col">Relation</th>
+            <th scope="col">Gender</th>
+            <th scope="col">status</th>
+            <th scope="col">phone</th>
+            <th scope="col">Religion</th>
+            <th scope="col">Occupation</th>
+            <th scope="col">Address</th>
             <th scope="col">Case Description</th>
+            <th scope="col">Medical History</th>
+            <th scope="col">Family History</th>
+            <th scope="col">Investigation</th>
             <th scope="col">Image</th>
-            <th scope="col">Remove</th>
+
           </tr>
         </thead>
         <tbody>
           {% for receipe in receipes%}
           <tr>
             <th scope="row">{{forloop.counter}}</th>
-            <td>{{receipe.receipe_name}}</td>
             <td>{{receipe.case_number}}</td>
+            <td>{{receipe.receipe_name}}</td>
+            <td>{{receipe.relation}}</td>
+            <td>{{receipe.gender}}</td>
+            <td>{{receipe.status}}</td>
+            <td>{{receipe.phone}}</td>
+            <td>{{receipe.religion}}</td>
+            <td>{{receipe.occupation}}</td>
+            <td>{{receipe.address}}</td>
             <td>{{receipe.receipe_description}}</td>
+            <td>{{receipe.medical_history}}</td>
+            <td>{{receipe.family_history}}</td>
+            <td>{{receipe.investigation}}</td>
+
             <td><img src="/media/{{receipe.receipe_image}}" style ="height:100px"></td>
             <td>
               <a href="/delete_receipe/{{receipe.id}}" class="btn btn-danger m-2">Delete</a>

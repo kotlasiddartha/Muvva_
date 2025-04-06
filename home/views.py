@@ -18,11 +18,17 @@ def receipes(request):
         case_number = data.get("case_number")
         receipe_name = data.get('receipe_name')
         receipe_description = data.get('receipe_description')
+        relation = data.get('relation')
+        gender = data.get('gender')
+        status = data.get('status')
+        phone = data.get('phone')
+        religion = data.get('religion')
+        occupation = data.get('occupation')
+        address = data.get('address')
+        medical_history = data.get('medical_history')
+        family_history = data.get('family_history')
+        investigation = data.get('investigation')
         receipe_image = request.FILES.get('receipe_image')
-
-        print(receipe_name)
-        print(receipe_description)
-        print(receipe_image)
 
 
         Receipe.objects.create(
@@ -30,6 +36,16 @@ def receipes(request):
             receipe_name = receipe_name,
             receipe_description = receipe_description,
             receipe_image = receipe_image,
+            relation = relation,
+            gender = gender,
+            status = status,
+            phone = phone,
+            religion = religion,
+            occupation = occupation,
+            address = address,
+            medical_history = medical_history,
+            family_history = family_history,
+            investigation = investigation
         )
 
         return redirect('/receipes/')
@@ -73,10 +89,22 @@ def update_receipe(request, id):
     
     return render(request, "home/update_receipes.html", context)
 
+@login_required(login_url="/login/")
 def delete_receipe(request, id):
     queryset = Receipe.objects.get(id = id)
     queryset.delete()
     return redirect('/receipes/')
+
+@login_required(login_url="/login/")
+def search_patient(request):
+    queryset = Receipe.objects.all()
+    if request.GET.get('search'):
+        queryset = queryset.filter(receipe_name__icontains = request.GET.get('search'))
+
+    context = {"receipes":queryset}
+
+    return render(request, "home/search.html", context)
+ 
 
 def login_page(request):
     if request.method == "POST":
@@ -98,6 +126,7 @@ def login_page(request):
         
     return render(request, "home/login.html")
 
+@login_required(login_url="/login/")
 def logout_page(request):
     logout(request)
     return redirect('/login')

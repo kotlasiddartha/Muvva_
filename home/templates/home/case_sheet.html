@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <title>Case Sheet</title>
+  <style>
+    :root{ --cs-bg: #fbfdff; --cs-accent: #0d6efd; }
+    body { font-family: DejaVu Sans, Arial, sans-serif; color: #222; margin: 24px; background: linear-gradient(180deg,var(--cs-bg), #ffffff 70%); }
+    .header { text-align: center; margin-bottom: 16px; }
+  .title { font-size: 30px; font-weight: 800; letter-spacing: 0.2px; color: var(--cs-accent); }
+  .subtitle { font-size: 14px; color: #666; font-weight:600; }
+  .section { margin-top: 14px; }
+  .section h3 { margin: 0 0 8px 0; font-size: 16px; font-weight: 800; color: #0b5; }
+  .section h3 span { font-weight: 900; }
+    .kv { display: flex; }
+    .kv .k { width: 160px; font-weight: 700; }
+    .box { border: 1px solid #e6eefb; padding: 10px; border-radius: 6px; background: rgba(255,255,255,0.98); box-shadow: 0 1px 6px rgba(13,110,253,0.03); }
+    .two-col { display: flex; gap: 20px; }
+    .two-col .col { flex: 1; }
+    pre { white-space: pre-wrap; font-family: inherit; }
+    footer { margin-top: 24px; text-align: center; font-size: 11px; color: #888; }
+
+    /* Keep print clean: white background and no shadows */
+    @media print {
+      body { background: #fff; margin: 12px; }
+      .box { box-shadow: none; border-color: #ddd; }
+      .title { color: #000; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:8px;">
+      <img src="{% static 'logo.png' %}" alt="logo" style="height:56px; width:auto;">
+      <div style="text-align:left;">
+        <div class="title">Muvva Clinic</div>
+        <div class="subtitle">Case Sheet</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. Preliminary Data -->
+  <div class="section">
+    <h3>1. Preliminary Data</h3>
+    <div class="box">
+      <div class="kv"><div class="k">Case Number</div><div class="v">{{ receipe.case_number }}</div></div>
+      <div class="kv"><div class="k">Name</div><div class="v">{{ receipe.receipe_name }}</div></div>
+  <div class="kv"><div class="k">Age</div><div class="v">{% if receipe.age %}{{ receipe.age }}{% else %}&nbsp;{% endif %}</div></div>
+      <div class="kv"><div class="k">Sex</div><div class="v">{{ receipe.gender }}</div></div>
+      <div class="kv"><div class="k">Address</div><div class="v"><pre>{{ receipe.address }}</pre></div></div>
+      <div class="kv"><div class="k">Contact No</div><div class="v">{{ receipe.phone }}</div></div>
+      <div class="kv"><div class="k">Occupation</div><div class="v">{{ receipe.occupation }}</div></div>
+  <div class="kv"><div class="k">Date</div><div class="v">{% if receipe.date %}{{ receipe.date }}{% else %}&nbsp;{% endif %}</div></div>
+      <div class="kv"><div class="k">Marital status</div><div class="v">{{ receipe.status }}</div></div>
+      <div class="kv"><div class="k">Religion</div><div class="v">{{ receipe.religion }}</div></div>
+    </div>
+  </div>
+
+  <!-- 2. Chief Complaints -->
+  <div class="section">
+    <h3>2. Chief Complaints</h3>
+  <div class="box"><pre>{% if receipe.chief_complaints %}{{ receipe.chief_complaints }}{% else %}&nbsp;{% endif %}</pre></div>
+  </div>
+
+  <!-- 3. History of Present Illness -->
+  <div class="section">
+    <h3>3. History of Present Illness</h3>
+  <div class="box"><pre>{% if receipe.receipe_description %}{{ receipe.receipe_description }}{% else %}&nbsp;{% endif %}</pre></div>
+  </div>
+
+  <!-- 4. Past Medical History -->
+  <div class="section">
+    <h3>4. Past Medical History</h3>
+    <div class="box"><pre>{% if receipe.medical_history %}{{ receipe.medical_history }}{% else %}&nbsp;{% endif %}</pre></div>
+  </div>
+
+  <!-- 5. Family History -->
+  <div class="section">
+    <h3>5. Family History</h3>
+    <div class="box"><pre>{% if receipe.family_history %}{{ receipe.family_history }}{% else %}&nbsp;{% endif %}</pre></div>
+  </div>
+
+  <!-- 6. Personal History -->
+  <div class="section">
+    <h3>6. Personal History</h3>
+    <div class="box">
+  <pre>Appetite: {% if receipe.appetite %}{{ receipe.appetite }}{% else %}&nbsp;{% endif %}
+Thirst (quantity/frequency/type): {% if receipe.thirst %}{{ receipe.thirst }}{% else %}&nbsp;{% endif %}
+Cravings: {% if receipe.cravings %}{{ receipe.cravings }}{% else %}&nbsp;{% endif %}
+Aversions: {% if receipe.aversions %}{{ receipe.aversions }}{% else %}&nbsp;{% endif %}
+Bowel Habits: {% if receipe.bowel_habits %}{{ receipe.bowel_habits }}{% else %}&nbsp;{% endif %}
+Urine: {% if receipe.urine %}{{ receipe.urine }}{% else %}&nbsp;{% endif %}
+Sleep: {% if receipe.sleep %}{{ receipe.sleep }}{% else %}&nbsp;{% endif %}
+Dreams: {% if receipe.dreams %}{{ receipe.dreams }}{% else %}&nbsp;{% endif %}
+Perspiration (location, amount, odour, stains): {% if receipe.perspiration %}{{ receipe.perspiration }}{% else %}&nbsp;{% endif %}
+Thermal Reaction (Hot/Chilly): {% if receipe.thermal_reaction %}{{ receipe.thermal_reaction }}{% else %}&nbsp;{% endif %}
+Habits (alcohol, tobacco, etc.): {% if receipe.habits %}{{ receipe.habits }}{% else %}&nbsp;{% endif %}
+Sexual History (if relevant): {% if receipe.sexual_history %}{{ receipe.sexual_history }}{% else %}&nbsp;{% endif %}
+&nbsp;</pre>
+    </div>
+  </div>
+
+  <!-- 7. Menstrual / Obstetric History -->
+  <div class="section">
+    <h3>7. Menstrual / Obstetric History (for female patients)</h3>
+    <div class="box">
+  <pre>Menarche age: {% if receipe.menarche_age %}{{ receipe.menarche_age }}{% else %}&nbsp;{% endif %}
+Cycle (duration, regularity): {% if receipe.cycle %}{{ receipe.cycle }}{% else %}&nbsp;{% endif %}
+Flow (amount, duration, color, clots): {% if receipe.flow %}{{ receipe.flow }}{% else %}&nbsp;{% endif %}
+Menopause (if applicable): {% if receipe.menopause %}{{ receipe.menopause }}{% else %}&nbsp;{% endif %}
+Obstetric History: {% if receipe.obstetric_history %}{{ receipe.obstetric_history }}{% else %}&nbsp;{% endif %}
+Gravida: {% if receipe.gravida %}{{ receipe.gravida }}{% else %}&nbsp;{% endif %}
+Para: {% if receipe.para %}{{ receipe.para }}{% else %}&nbsp;{% endif %}
+Abortions: {% if receipe.abortions %}{{ receipe.abortions }}{% else %}&nbsp;{% endif %}
+Full-term deliveries: {% if receipe.full_term_deliveries %}{{ receipe.full_term_deliveries }}{% else %}&nbsp;{% endif %}
+&nbsp;</pre>
+    </div>
+  </div>
+
+  <!-- 8. Mental Generals / Psychological Profile -->
+  <div class="section">
+    <h3>8. Mental Generals / Psychological Profile</h3>
+  <div class="box"><pre>{% if receipe.mental_generals %}{{ receipe.mental_generals }}{% else %}&nbsp;{% endif %}</pre></div>
+  </div>
+
+  <!-- 9. General Physical Examination -->
+  <div class="section">
+    <h3>9. General Physical Examination</h3>
+    <div class="box">
+  <pre>Built (Lean, obese, well-nourished, etc.): {% if receipe.built %}{{ receipe.built }}{% else %}&nbsp;{% endif %}
+Height: {% if receipe.height %}{{ receipe.height }}{% else %}&nbsp;{% endif %}
+Weight: {% if receipe.weight %}{{ receipe.weight }}{% else %}&nbsp;{% endif %}
+Pulse: {% if receipe.pulse %}{{ receipe.pulse }}{% else %}&nbsp;{% endif %}
+BP: {% if receipe.bp %}{{ receipe.bp }}{% else %}&nbsp;{% endif %}
+Temperature: {% if receipe.temperature %}{{ receipe.temperature }}{% else %}&nbsp;{% endif %}
+Respiration: {% if receipe.respiration %}{{ receipe.respiration }}{% else %}&nbsp;{% endif %}
+Pallor / Cyanosis / Edema / Icterus / Clubbing / Lymphadenopathy: {% if receipe.pallor_cyanosis_edema %}{{ receipe.pallor_cyanosis_edema }}{% else %}&nbsp;{% endif %}
+Tongue, nails, skin observations: {% if receipe.tongue_nails_skin %}{{ receipe.tongue_nails_skin }}{% else %}&nbsp;{% endif %}
+&nbsp;</pre>
+    </div>
+  </div>
+
+  <!-- 10. Systemic Examination -->
+  <div class="section">
+    <h3>10. Systemic Examination</h3>
+    <div class="box">
+  <pre>Respiratory System: {% if receipe.respiratory_system %}{{ receipe.respiratory_system }}{% else %}&nbsp;{% endif %}
+Cardiovascular System: {% if receipe.cardiovascular_system %}{{ receipe.cardiovascular_system }}{% else %}&nbsp;{% endif %}
+Gastrointestinal System: {% if receipe.gastrointestinal_system %}{{ receipe.gastrointestinal_system }}{% else %}&nbsp;{% endif %}
+Genitourinary System: {% if receipe.genitourinary_system %}{{ receipe.genitourinary_system }}{% else %}&nbsp;{% endif %}
+Nervous System: {% if receipe.nervous_system %}{{ receipe.nervous_system }}{% else %}&nbsp;{% endif %}
+Locomotor System: {% if receipe.locomotor_system %}{{ receipe.locomotor_system }}{% else %}&nbsp;{% endif %}
+&nbsp;</pre>
+    </div>
+  </div>
+
+  <!-- 11. Investigation Reports -->
+  <div class="section">
+    <h3>11. Investigation Reports</h3>
+    <div class="box"><pre>{% if receipe.investigation %}{{ receipe.investigation }}{% else %}&nbsp;{% endif %}</pre></div>
+  </div>
+
+  <!-- 12. Diagnosis (Provisional/Final) -->
+  <div class="section">
+    <h3>12. Diagnosis (Provisional/Final)</h3>
+    <div class="box">
+  <pre>Allopathic diagnosis (if applicable): {% if receipe.allopathic_diagnosis %}{{ receipe.allopathic_diagnosis }}{% else %}&nbsp;{% endif %}
+Miasmatic Diagnosis (Psora/Sycosis/Syphilis/Tubercular): {% if receipe.miasmatic_diagnosis %}{{ receipe.miasmatic_diagnosis }}{% else %}&nbsp;{% endif %}
+&nbsp;</pre>
+    </div>
+  </div>
+
+  <!-- 13. Totality of Symptoms -->
+  <div class="section">
+    <h3>13. Totality of Symptoms</h3>
+  <div class="box"><pre>{% if receipe.totality_of_symptoms %}{{ receipe.totality_of_symptoms }}{% else %}&nbsp;{% endif %}</pre></div>
+  </div>
+
+  <!-- 14. Repertorization (if done) -->
+  <div class="section">
+    <h3>14. Repertorization (if done)</h3>
+  <div class="box"><pre>{% if receipe.repertorization %}{{ receipe.repertorization }}{% else %}&nbsp;{% endif %}</pre></div>
+  </div>
+
+  <!-- 15. Final Prescription -->
+  <div class="section">
+    <h3>15. Final Prescription</h3>
+    <div class="box">
+  <pre>Chosen Remedy: {% if receipe.chosen_remedy %}{{ receipe.chosen_remedy }}{% else %}&nbsp;{% endif %}
+Potency: {% if receipe.potency %}{{ receipe.potency }}{% else %}&nbsp;{% endif %}
+Repetition: {% if receipe.repetition %}{{ receipe.repetition }}{% else %}&nbsp;{% endif %}
+Basis of prescription (Constitutional/Acute/Intercurrent, etc.): {% if receipe.basis_of_prescription %}{{ receipe.basis_of_prescription }}{% else %}&nbsp;{% endif %}
+&nbsp;</pre>
+    </div>
+  </div>
+
+  <!-- 16. Follow-up date -->
+  <div class="section">
+    <h3>16. Follow-up date</h3>
+  <div class="box"><pre>{% if receipe.follow_up_date %}{{ receipe.follow_up_date }}{% else %}&nbsp;{% endif %}</pre></div>
+  </div>
+
+  <footer>
+    Generated: {{ now }}
+  </footer>
+</body>
+</html>

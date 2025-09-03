@@ -1,70 +1,83 @@
 {% extends "base.html" %}
 {% block start %}
 
-<form class="col-20 mx-auto card p-3 danger-lg" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+<style>
+  .thumbnail { width: 120px; height: auto; object-fit: cover; border-radius: 4px; }
+  .results-card { min-height: 100px; }
+  .muted-small { color: #6c757d; }
+  .table-responsive { max-height: 65vh; overflow: auto; }
+</style>
 
-    <div class="mt-5">
-        
-        <div class="mx-auto col-6">
-          <form>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Search Case</label>
-            <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            
-          </div>
-          <button type="submit" class="btn btn-primary">Search</button>
-        </form>
-        </div>
+<div class="container">
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-9">
+      <form class="card p-3 shadow-sm d-flex gap-2 align-items-center" method="get" role="search" aria-label="Search Receipes">
+        <input name="search" class="form-control form-control-lg" type="search" placeholder="Search by name or case number" aria-label="Search" value="{{ request.GET.search|default:'' }}">
+        <button class="btn btn-primary btn-lg" type="submit"><i class="bi bi-search me-2"></i>Search</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h5 class="mb-0">Search results</h5>
+        <div class="muted-small">{{ receipes|length }} result{{ receipes|length|pluralize }}</div>
       </div>
+    </div>
+  </div>
 
-    <table class="table mt-5">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Case number</th>
-            <th scope="col">Patient Name</th>
-            <th scope="col">Relation</th>
-            <th scope="col">Gender</th>
-            <th scope="col">status</th>
-            <th scope="col">phone</th>
-            <th scope="col">Religion</th>
-            <th scope="col">Occupation</th>
-            <th scope="col">Address</th>
-            <th scope="col">Case Description</th>
-            <th scope="col">Medical History</th>
-            <th scope="col">Family History</th>
-            <th scope="col">Investigation</th>
-            <th scope="col">Image</th>
+  <div class="card shadow-sm results-card">
+    <div class="card-body p-2">
+      <div class="table-responsive">
+        <table class="table table-hover table-sm align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>#</th>
+              <th>Case</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Contact</th>
+              <th>Occupation</th>
+              <th>Follow-up</th>
+              <th>Case Sheet</th>
+              <th class="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for receipe in receipes %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td class="text-nowrap">{{ receipe.case_number }}</td>
+              <td>{{ receipe.receipe_name }}</td>
+              <td>{{ receipe.age }}</td>
+              <td class="text-nowrap">{{ receipe.phone }}<br><small class="muted-small">{{ receipe.relation }} • {{ receipe.gender }} • {{ receipe.status }}</small></td>
+              <td>{{ receipe.occupation }}</td>
+              <td class="text-nowrap">{{ receipe.follow_up_date|date:"Y-m-d" }}</td>
+              <td>
+                {% if receipe.case_sheet_url %}
+                  <a href="{{ receipe.case_sheet_url }}" target="_blank" class="btn btn-outline-secondary btn-sm">Open</a>
+                  <div><small class="text-success">Stored</small></div>
+                {% else %}
+                  <span class="text-muted small">Not stored</span>
+                {% endif %}
+              </td>
+              <td class="text-end">
+                <a href="/update_receipe/{{ receipe.id }}" class="btn btn-outline-primary btn-sm me-1" title="Edit"><i class="bi bi-pencil"></i></a>
+                <a href="/delete_receipe/{{ receipe.id }}" class="btn btn-outline-danger btn-sm" title="Delete" onclick="return confirm('Delete this record?');"><i class="bi bi-trash"></i></a>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="11" class="text-center text-muted py-4">No records found.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-        </tr>
-        </thead>
-        <tbody>
-        {% for receipe in receipes%}
-        <tr>
-            <th scope="row">{{forloop.counter}}</th>
-            <td>{{receipe.case_number}}</td>
-            <td>{{receipe.receipe_name}}</td>
-            <td>{{receipe.relation}}</td>
-            <td>{{receipe.gender}}</td>
-            <td>{{receipe.status}}</td>
-            <td>{{receipe.phone}}</td>
-            <td>{{receipe.religion}}</td>
-            <td>{{receipe.occupation}}</td>
-            <td>{{receipe.address}}</td>
-            <td>{{receipe.receipe_description}}</td>
-            <td>{{receipe.medical_history}}</td>
-            <td>{{receipe.family_history}}</td>
-            <td>{{receipe.investigation}}</td>
+</div>
 
-            <td><img src="/media/{{receipe.receipe_image}}" style ="height:100px"></td>
-            <td>
-            <a href="/delete_receipe/{{receipe.id}}" class="btn btn-danger m-2">Delete</a>
-            <a href="/update_receipe/{{receipe.id}}" class="btn btn-success">update</a>
-            </td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</form>
 {% endblock %}

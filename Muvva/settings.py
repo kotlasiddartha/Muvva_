@@ -123,6 +123,15 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Allow serving project-root static assets (like logo.png) during development.
+# For production, move logo.png into a proper static directory and adjust STATICFILES_DIRS accordingly.
+from pathlib import Path as _Path
+STATICFILES_DIRS = [BASE_DIR]
+
+# Media files (user uploaded)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

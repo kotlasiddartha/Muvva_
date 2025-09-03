@@ -1,0 +1,24 @@
+Case Number: 1
+Patient Name: sid
+Relation: nar
+Gender: Male
+Status: Married
+Phone: 788
+Religion: 
+Occupation: haj
+Address: jcl
+
+--- Case Description ---
+
+
+
+--- Medical History ---
+
+
+
+--- Family History ---
+
+
+
+--- Investigation ---
+

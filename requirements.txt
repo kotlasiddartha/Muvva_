@@ -1,0 +1,7 @@
+# Requirements for the Muvva Django project
+# Django version noted in project settings
+Django==4.2.4
+# Pillow is required for ImageField handling
+Pillow>=9.0.0
+# For PDF generation from HTML
+xhtml2pdf>=0.2.7

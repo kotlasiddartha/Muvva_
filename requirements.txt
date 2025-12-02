@@ -11,3 +11,7 @@ whitenoise>=6.4.0
 dj-database-url>=1.0.0
 psycopg2-binary>=2.9.6
 python-dotenv>=1.0.0
+wheel>=0.40.0
+# Try pinned versions for pycairo / cairocffi which often have wheels for common Python versions
+pycairo>=1.20.0
+cairocffi>=1.4.0

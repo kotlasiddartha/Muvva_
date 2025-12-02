@@ -41,4 +41,4 @@ USER appuser
 ENV PORT=8000
 
 # Use shell form so $PORT expands
-CMD gunicorn Muvva_.wsgi --bind 0.0.0.0:$PORT
+CMD gunicorn Muvva.wsgi --bind 0.0.0.0:$PORT

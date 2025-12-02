@@ -4,39 +4,39 @@
 <div class="container">
     <form class="mx-auto card p-4 shadow-sm" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <h2 class="h5">Patient Details</h2>
+        <h2 class="h2">Patient Details</h2>
         <hr>
         <div class="mb-3">
-          <label class="form-label">Case number</label>
-          <input name="case_number" type="text" class="form-control">
+          <label class="form-label">Case number:</label>
+          <input name="454" type="text" class="form-control">
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Name</label>
+          <label class="form-label">Name:</label>
           <input name="receipe_name" type="text" class="form-control">
         </div>
 
         <div class="row">
           <div class="mb-3 col-md-4">
-            <label class="form-label">Age</label>
+            <label class="form-label">Age:</label>
             <input name="age" type="number" class="form-control">
           </div>
           <div class="mb-3 col-md-4">
-            <label class="form-label">Date</label>
+            <label class="form-label">Date:</label>
             <input name="date" type="date" class="form-control">
           </div>
           <div class="mb-3 col-md-4">
-            <label class="form-label">Follow-up date</label>
+            <label class="form-label">Follow-up date:</label>
             <input name="follow_up_date" type="date" class="form-control">
           </div>
         </div>
 
         <div class="mb-3">
-          <label class="form-label">S/D/W/o</label>
+          <label class="form-label">S/D/W/o:</label>
           <input name="relation" type="text" class="form-control">
         </div>
         <div class="mb-3">
-          <label class="form-label">Gender</label>
+          <label class="form-label">Gender:</label>
           <select name="gender" class="form-select">
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -44,126 +44,314 @@
         </div>
         
         <div class="mb-3">
-          <label class="form-label">Status</label>
-          <select name="status" class="form-select">
-            <option value="Married">Married</option>
-            <option value="Single">Single</option>
-          </select>
+          <label class="form-label">Marital Status:</label>
+          <input name="marital_status" type="text" class="form-control">
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Phone</label>
+          <label class="form-label">Phone:</label>
           <input name="phone" type="tel" class="form-control">
         </div>
         
         <div class="mb-3">
-          <label class="form-label">Occupation</label>
+          <label class="form-label">Occupation:</label>
           <input name="occupation" type="text" class="form-control">
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Address</label>
+          <label class="form-label">Address:</label>
           <input name="address" type="text" class="form-control">
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Religion</label>
+          <label class="form-label">Religion:</label>
           <input name="religion" type="text" class="form-control">
         </div>
-        
-  <h2 class="h6 mt-4">Case Details</h2>
-  <hr>
+
+
+        <!-----------------------------Case Details------------------------------------------------------>
+        <hr>
+        <h2 class="mt-3">Case Details</h2>
+        <hr>
+              
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Presenting Complaints</label>
-          <textarea class="form-control" name="receipe_description"></textarea>
+          <label for="exampleInputPassword1" class="form-label">Chief Complaints:</label>
+          <textarea class="form-control" name="chief_complaints"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">History of Present Illness:</label>
+          <textarea class="form-control" name="present_illness"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Past Medical History:</label>
+          <textarea class="form-control" name="medical_history"></textarea>
         </div>
 
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Family History:</label>
+          <textarea class="form-control" name="family_history"></textarea>
+        </div>
+        
+        <!-----------------------------Personal History (optional)------------------------------------------------------>
+
         <hr>
-        <h5 class="mt-3">Personal History (optional)</h5>
+        <h2 class="mt-3">Personal History (optional)</h2>
+        <hr>
         <div class="row">
           <div class="mb-3 col-md-6">
-            <label class="form-label">Appetite</label>
+            <label class="form-label">Appetite:</label>
             <input name="appetite" type="text" class="form-control">
           </div>
           <div class="mb-3 col-md-6">
-            <label class="form-label">Thirst</label>
+            <label class="form-label">Thirst(quantity/frequency/type):</label>
             <input name="thirst" type="text" class="form-control">
           </div>
         </div>
         <div class="row">
           <div class="mb-3 col-md-6">
-            <label class="form-label">Cravings</label>
+            <label class="form-label">Cravings:</label>
             <input name="cravings" type="text" class="form-control">
           </div>
           <div class="mb-3 col-md-6">
-            <label class="form-label">Aversions</label>
+            <label class="form-label">Aversions:</label>
             <input name="aversions" type="text" class="form-control">
           </div>
         </div>
         <div class="row">
           <div class="mb-3 col-md-6">
-            <label class="form-label">Bowel Habits</label>
+            <label class="form-label">Bowel Habits:</label>
             <input name="bowel_habits" type="text" class="form-control">
           </div>
           <div class="mb-3 col-md-6">
-            <label class="form-label">Urine</label>
+            <label class="form-label">Urine:</label>
             <input name="urine" type="text" class="form-control">
           </div>
         </div>
 
         <div class="row">
           <div class="mb-3 col-md-6">
-            <label class="form-label">Sleep</label>
+            <label class="form-label">Sleep:</label>
             <input name="sleep" type="text" class="form-control">
           </div>
           <div class="mb-3 col-md-6">
-            <label class="form-label">Dreams</label>
+            <label class="form-label">Dreams:</label>
             <input name="dreams" type="text" class="form-control">
           </div>
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Perspiration</label>
+          <label class="form-label">Perspiration(location, amount, odour, stains):</label>
           <input name="perspiration" type="text" class="form-control">
         </div>
 
         <div class="row">
           <div class="mb-3 col-md-6">
-            <label class="form-label">Thermal Reaction</label>
+            <label class="form-label">Thermal Reaction(Hot/Chilly):</label>
             <input name="thermal_reaction" type="text" class="form-control">
           </div>
           <div class="mb-3 col-md-6">
-            <label class="form-label">Habits</label>
+            <label class="form-label">Habits(alcohol, tobacco, etc.):</label>
             <input name="habits" type="text" class="form-control">
           </div>
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Sexual History</label>
+          <label class="form-label">Sexual History(if relevant):</label>
           <input name="sexual_history" type="text" class="form-control">
         </div>
 
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">past Medical History</label>
-          <textarea class="form-control" name="medical_history"></textarea>
+          <label class="form-label">Patient Related files</label>
+          <input name="patient_image" type="file" class="form-control">
+        </div>
+        
+        <!---------------------------Menstrual / Obstetric History (for female patients)------------------------------------->
+        <hr>
+        <h2 class="mt-3">Menstrual / Obstetric History (for female patients)</h2>
+        <hr>
+        <div class="row">
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Menarche age:</label>
+          <input name="menarche_age" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Cycle (duration, regularity):</label>
+          <input name="cycle" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Flow (amount, duration, color, clots):</label>
+          <input name="flow" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Menopause (if applicable):</label>
+          <input name="menopause" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Obstetric History:</label>
+          <input name="obstetric_history" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Gravida:</label>
+          <input name="gravida" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Para:</label>
+          <input name="para" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Abortions:</label>
+          <input name="abortions" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Full-term deliveries:</label>
+          <input name="full_term" type="text" class="form-control">
+        </div>
+        </div>
+        <div class="mb-3">
+        <hr>
+        <label for="exampleInputPassword1" class="form-label">Mental Generals / Psychological Profile:</label>
+          <textarea class="form-control" name="mental_generals"></textarea>
+        </div>
+
+
+        <!---------------------------General Physical Examination------------------------------------------->
+        <hr>
+        <h2 class="mt-3">General Physical Examination</h2>
+        <hr>
+
+        <div class="row">
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Built (Lean, obese, well-nourished, etc.):</label>
+          <input name="built" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Height:</label>
+          <input name="height" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Weight:</label>
+          <input name="weight" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Pulse:</label>
+          <input name="pulse" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Bp:</label>
+          <input name="bp" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Temparature:</label>
+          <input name="temparature" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Respiration:</label>
+          <input name="respiration" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Pallor / Cyanosis / Edema / Icterus / Clubbing / Lymphadenopathy:</label>
+          <input name="Pallor" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Tongue, nails, skin observations:</label>
+          <input name="Tongue" type="text" class="form-control">
+        </div>
+        </div>
+        
+
+        <!---------------------------Systemic Examination------------------------------------------->
+        <hr>
+        <h2 class="mb-3" >Systemic Examination</h2>
+        <hr>
+        <div class="row">
+          <div class="mb-3 col-md-6">
+          <label class="form-label">Respiratory System:</label>
+          <input name="respiration_system" type="text" class="form-control">
+          </div>
+          <div class="mb-3 col-md-6">
+          <label class="form-label">Cardiovascular System:</label>
+          <input name="cardiovascular_system" type="text" class="form-control">
+          </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Gastrointestinal System:</label>
+          <input name="gastrointestinal_system:" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Genitourinary System:</label>
+          <input name="genitourinary_system" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Nervous System:</label>
+          <input name="nervous_system" type="text" class="form-control">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">Locomotor System:</label>
+          <input name="Locomotor_system" type="text" class="form-control">
+        </div>
         </div>
 
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Family History</label>
-          <textarea class="form-control" name="family_history"></textarea>
+        <hr>
+        <label for="exampleInputPassword1" class="form-label">Investigation Reports:</label>
+          <textarea class="form-control" name="investigation_reports"></textarea>
         </div>
 
+        <!----------------------------------------Diagnosis (Provisional/Final)-------------------------------->
+
+        <hr>
+        <h2 class="mt-3">Diagnosis (Provisional/Final)</h2>
+        <hr>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Life Space Investigation</label>
-          <textarea class="form-control" name="investigation"></textarea>
+          <label class="form-label">Allopathic diagnosis (if applicable):</label>
+          <input name="Locomotor_system" type="text" class="form-control">
+        </div>
+        <div class="mb-3">  
+          <label class="form-label">Miasmatic Diagnosis (Psora/Sycosis/Syphilis/Tubercular):</label>
+          <input name="Locomotor_system" type="text" class="form-control">
         </div>
 
+        <hr>
         <div class="mb-3">
-          <label class="form-label">Patient Image</label>
-          <input name="receipe_image" type="file" class="form-control">
+          <label for="exampleInputPassword1" class="form-label">Totality of Symptoms:</label>
+          <textarea class="form-control" name="totality_of_symptoms"></textarea>
         </div>
 
-        <div class="d-grid">
+        
+        <hr>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Repertorization (if done):</label>
+          <textarea class="form-control" name="Repertorization"></textarea>
+        </div>
+
+
+        <!----------------------------------Final Prescription------------------------------------------->
+        <hr>
+        <h2 class="mt-3">Final Prescription</h2>
+        <hr>
+
+        <div class="row">
+          <div class="mb-3 col-md-6">
+            <label class="form-label">Chosen Remedy:</label>
+            <input name="chosen_remedy" type="text" class="form-control">
+          </div>
+          <div class="mb-3 col-md-6">
+            <label class="form-label">Potency:</label>
+            <input name="potency" type="text" class="form-control">
+          </div>
+        <div class="mb-3">  
+          <label class="form-label">Repetition:</label>
+          <input name="repetition" type="text" class="form-control">
+        </div>
+
+
+        <hr>
+        <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Basis of prescription: (Constitutional/Acute/Intercurrent, etc.)</label>
+          <textarea class="form-control" name="mental_generals"></textarea>
+        </div>
+        
+        
+              <div class="d-grid">
             <button type="submit" class="btn btn-success">Submit</button>
         </div>
       </form>

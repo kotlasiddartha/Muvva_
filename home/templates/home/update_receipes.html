@@ -2,333 +2,341 @@
 {% block start %}
 
 <div class="container mt-5">
-  <form class="col-6 mx-auto card p-3 shadow-lg card-accent" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <h2>Update Receipe</h2>
-        <hr>
-        <div class="mb-3">
-          <label class="form-label">Case number</label>
-          <input name="case_number" value="{{ receipe.case_number }}" type="text" class="form-control">
-        </div>
+  <form class="col-8 mx-auto card p-3 shadow-lg card-accent" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2>Update Case</h2>
+    <hr>
 
-        <div class="mb-3">
-          <label class="form-label">Patient Name</label>
-          <input name="receipe_name" value="{{ receipe.receipe_name }}" type="text" class="form-control">
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">S/D/W/o</label>
-          <input name="relation" value="{{ receipe.relation }}" type="text" class="form-control">
-        </div>
-
-        <div class="row">
-          <div class="mb-3 col-md-6">
-            <label class="form-label">Gender</label>
-            <select name="gender" class="form-select">
-              <option value="Male" {% if receipe.gender == 'Male' %}selected{% endif %}>Male</option>
-              <option value="Female" {% if receipe.gender == 'Female' %}selected{% endif %}>Female</option>
-            </select>
-          </div>
-          <div class="mb-3 col-md-6">
-            <label class="form-label">Status</label>
-            <select name="status" class="form-select">
-              <option value="Married" {% if receipe.status == 'Married' %}selected{% endif %}>Married</option>
-              <option value="Single" {% if receipe.status == 'Single' %}selected{% endif %}>Single</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Phone</label>
-          <input name="phone" value="{{ receipe.phone }}" type="tel" class="form-control">
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Occupation</label>
-          <input name="occupation" value="{{ receipe.occupation }}" type="text" class="form-control">
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Address</label>
-          <input name="address" value="{{ receipe.address }}" type="text" class="form-control">
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Religion</label>
-          <input name="religion" value="{{ receipe.religion }}" type="text" class="form-control">
-        </div>
-
-        <div class="row">
-          <div class="mb-3 col-md-6">
-            <label class="form-label">Age</label>
-            <input name="age" value="{{ receipe.age }}" type="number" class="form-control">
-          </div>
-          <div class="mb-3 col-md-6">
-            <label class="form-label">Date</label>
-            <input name="date" value="{{ receipe.date|date:'Y-m-d' }}" type="date" class="form-control">
-          </div>
-        </div>
-
-        <hr>
-        <div class="mb-3">
-          <label class="form-label">Presenting Complaints</label>
-          <textarea class="form-control" name="receipe_description">{{ receipe.receipe_description }}</textarea>
-        </div>
-
-        <hr>
-        <h5>Personal History</h5>
-        <div class="mb-3">
-          <label class="form-label">Appetite</label>
-          <input name="appetite" value="{{ receipe.appetite }}" type="text" class="form-control">
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Thirst</label>
-          <input name="thirst" value="{{ receipe.thirst }}" type="text" class="form-control">
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Cravings / Aversions</label>
-          <input name="cravings" value="{{ receipe.cravings }}" type="text" class="form-control">
-          <input name="aversions" value="{{ receipe.aversions }}" type="text" class="form-control mt-2">
-        </div>
-
-        <div class="row">
-          <div class="mb-3 col-md-6">
-            <label class="form-label">Bowel Habits</label>
-            <input name="bowel_habits" value="{{ receipe.bowel_habits }}" type="text" class="form-control">
-          </div>
-          <div class="mb-3 col-md-6">
-            <label class="form-label">Urine</label>
-            <input name="urine" value="{{ receipe.urine }}" type="text" class="form-control">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="mb-3 col-md-6">
-            <label class="form-label">Sleep</label>
-            <input name="sleep" value="{{ receipe.sleep }}" type="text" class="form-control">
-          </div>
-          <div class="mb-3 col-md-6">
-            <label class="form-label">Dreams</label>
-            <input name="dreams" value="{{ receipe.dreams }}" type="text" class="form-control">
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Perspiration</label>
-          <input name="perspiration" value="{{ receipe.perspiration }}" type="text" class="form-control">
-        </div>
-
-        <div class="row">
-          <div class="mb-3 col-md-6">
-            <label class="form-label">Thermal Reaction</label>
-            <input name="thermal_reaction" value="{{ receipe.thermal_reaction }}" type="text" class="form-control">
-          </div>
-          <div class="mb-3 col-md-6">
-            <label class="form-label">Habits</label>
-            <input name="habits" value="{{ receipe.habits }}" type="text" class="form-control">
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Sexual History</label>
-          <input name="sexual_history" value="{{ receipe.sexual_history }}" type="text" class="form-control">
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Past Medical History</label>
-          <textarea class="form-control" name="medical_history">{{ receipe.medical_history }}</textarea>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Family History</label>
-          <textarea class="form-control" name="family_history">{{ receipe.family_history }}</textarea>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Investigation</label>
-          <textarea class="form-control" name="investigation">{{ receipe.investigation }}</textarea>
-        </div>
-
-        <hr>
-        <h5>Menstrual / Obstetric</h5>
-        <div class="row">
-          <div class="mb-3 col-md-4">
-            <label class="form-label">Menarche age</label>
-            <input name="menarche_age" value="{{ receipe.menarche_age }}" type="text" class="form-control">
-          </div>
-          <div class="mb-3 col-md-4">
-            <label class="form-label">Cycle</label>
-            <input name="cycle" value="{{ receipe.cycle }}" type="text" class="form-control">
-          </div>
-          <div class="mb-3 col-md-4">
-            <label class="form-label">Flow</label>
-            <input name="flow" value="{{ receipe.flow }}" type="text" class="form-control">
-          </div>
-        </div>
-        <div class="row">
-          <div class="mb-3 col-md-4">
-            <label class="form-label">Menopause</label>
-            <input name="menopause" value="{{ receipe.menopause }}" type="text" class="form-control">
-          </div>
-          <div class="mb-3 col-md-4">
-            <label class="form-label">Gravida</label>
-            <input name="gravida" value="{{ receipe.gravida }}" type="text" class="form-control">
-          </div>
-          <div class="mb-3 col-md-4">
-            <label class="form-label">Para</label>
-            <input name="para" value="{{ receipe.para }}" type="text" class="form-control">
-          </div>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Abortions</label>
-          <input name="abortions" value="{{ receipe.abortions }}" type="text" class="form-control">
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Full-term deliveries</label>
-          <input name="full_term_deliveries" value="{{ receipe.full_term_deliveries }}" type="text" class="form-control">
-        </div>
-
-        <hr>
-        <div class="mb-3">
-          <label class="form-label">Mental Generals / Psychological Profile</label>
-          <textarea name="mental_generals" class="form-control">{{ receipe.mental_generals }}</textarea>
-        </div>
-
-        <hr>
-        <h5>General Physical Examination</h5>
-        <div class="row">
-          <div class="mb-3 col-md-6">
-            <label class="form-label">Built</label>
-            <input name="built" value="{{ receipe.built }}" type="text" class="form-control">
-          </div>
-          <div class="mb-3 col-md-6">
-            <label class="form-label">Height</label>
-            <input name="height" value="{{ receipe.height }}" type="text" class="form-control">
-          </div>
-        </div>
-        <div class="row">
-          <div class="mb-3 col-md-4">
-            <label class="form-label">Weight</label>
-            <input name="weight" value="{{ receipe.weight }}" type="text" class="form-control">
-          </div>
-          <div class="mb-3 col-md-4">
-            <label class="form-label">Pulse</label>
-            <input name="pulse" value="{{ receipe.pulse }}" type="text" class="form-control">
-          </div>
-          <div class="mb-3 col-md-4">
-            <label class="form-label">BP</label>
-            <input name="bp" value="{{ receipe.bp }}" type="text" class="form-control">
-          </div>
-        </div>
-        <div class="row">
-          <div class="mb-3 col-md-4">
-            <label class="form-label">Temperature</label>
-            <input name="temperature" value="{{ receipe.temperature }}" type="text" class="form-control">
-          </div>
-          <div class="mb-3 col-md-4">
-            <label class="form-label">Respiration</label>
-            <input name="respiration" value="{{ receipe.respiration }}" type="text" class="form-control">
-          </div>
-          <div class="mb-3 col-md-4">
-            <label class="form-label">Pallor / Cyanosis / Edema</label>
-            <input name="pallor_cyanosis_edema" value="{{ receipe.pallor_cyanosis_edema }}" type="text" class="form-control">
-          </div>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Tongue, nails, skin observations</label>
-          <input name="tongue_nails_skin" value="{{ receipe.tongue_nails_skin }}" type="text" class="form-control">
-        </div>
-
-        <hr>
-        <h5>Systemic Examination</h5>
-        <div class="mb-3">
-          <label class="form-label">Respiratory System</label>
-          <textarea name="respiratory_system" class="form-control">{{ receipe.respiratory_system }}</textarea>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Cardiovascular System</label>
-          <textarea name="cardiovascular_system" class="form-control">{{ receipe.cardiovascular_system }}</textarea>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Gastrointestinal System</label>
-          <textarea name="gastrointestinal_system" class="form-control">{{ receipe.gastrointestinal_system }}</textarea>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Genitourinary System</label>
-          <textarea name="genitourinary_system" class="form-control">{{ receipe.genitourinary_system }}</textarea>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Nervous System</label>
-          <textarea name="nervous_system" class="form-control">{{ receipe.nervous_system }}</textarea>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Locomotor System</label>
-          <textarea name="locomotor_system" class="form-control">{{ receipe.locomotor_system }}</textarea>
-        </div>
-
-        <hr>
-        <h5>Diagnosis / Prescription</h5>
-        <div class="mb-3">
-          <label class="form-label">Allopathic diagnosis</label>
-          <textarea name="allopathic_diagnosis" class="form-control">{{ receipe.allopathic_diagnosis }}</textarea>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Miasmatic Diagnosis</label>
-          <input name="miasmatic_diagnosis" value="{{ receipe.miasmatic_diagnosis }}" type="text" class="form-control">
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Totality of Symptoms</label>
-          <textarea name="totality_of_symptoms" class="form-control">{{ receipe.totality_of_symptoms }}</textarea>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Repertorization</label>
-          <textarea name="repertorization" class="form-control">{{ receipe.repertorization }}</textarea>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Chosen Remedy</label>
-          <input name="chosen_remedy" value="{{ receipe.chosen_remedy }}" type="text" class="form-control">
-        </div>
-        <div class="row">
-          <div class="mb-3 col-md-4">
-            <label class="form-label">Potency</label>
-            <input name="potency" value="{{ receipe.potency }}" type="text" class="form-control">
-          </div>
-          <div class="mb-3 col-md-4">
-            <label class="form-label">Repetition</label>
-            <input name="repetition" value="{{ receipe.repetition }}" type="text" class="form-control">
-          </div>
-          <div class="mb-3 col-md-4">
-            <label class="form-label">Follow-up date</label>
-            <input name="follow_up_date" value="{{ receipe.follow_up_date|date:'Y-m-d' }}" type="date" class="form-control">
-          </div>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Basis of prescription</label>
-          <textarea name="basis_of_prescription" class="form-control">{{ receipe.basis_of_prescription }}</textarea>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Patient Image (leave blank to keep current)</label>
-          <input name="receipe_image" type="file" class="form-control">
-        </div>
-
-    <div class="d-grid">
-            <button type="submit" class="btn btn-primary-custom">Update</button>
+    <!-- 1. Patient Details -->
+    <h5>Patient Details</h5>
+    <div class="mb-3">
+      <label class="form-label">Case number</label>
+      <input name="case_number" value="{{ receipe.case_number }}" type="text" class="form-control" required>
     </div>
-      </form>
+    <div class="mb-3">
+      <label class="form-label">Patient Name</label>
+      <input name="name" value="{{ receipe.name }}" type="text" class="form-control" required>
+    </div>
+    <div class="row">
+      <div class="mb-3 col-md-4">
+        <label class="form-label">Age</label>
+        <input name="age" value="{{ receipe.age }}" type="number" class="form-control" required>
+      </div>
+      <div class="mb-3 col-md-4">
+        <label class="form-label">Date</label>
+        <input name="date" value="{{ receipe.date|date:'Y-m-d' }}" type="date" class="form-control">
+      </div>
+      <div class="mb-3 col-md-4">
+        <label class="form-label">Follow-up date</label>
+        <input name="follow_up_date" value="{{ receipe.follow_up_date|date:'Y-m-d' }}" type="date" class="form-control">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">S/D/W/o</label>
+      <input name="relation" value="{{ receipe.relation }}" type="text" class="form-control">
+    </div>
+    <div class="row">
+      <div class="mb-3 col-md-6">
+        <label class="form-label">Gender</label>
+        <select name="gender" class="form-select">
+          <option value="Male" {% if receipe.gender == 'Male' %}selected{% endif %}>Male</option>
+          <option value="Female" {% if receipe.gender == 'Female' %}selected{% endif %}>Female</option>
+        </select>
+      </div>
+      <div class="mb-3 col-md-6">
+        <label class="form-label">Marital Status</label>
+        <select name="status" class="form-select">
+          <option value="Married" {% if receipe.status == 'Married' %}selected{% endif %}>Married</option>
+          <option value="Single" {% if receipe.status == 'Single' %}selected{% endif %}>Single</option>
+        </select>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Phone</label>
+      <input name="phone" value="{{ receipe.phone }}" type="tel" pattern="[0-9]{10}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Occupation</label>
+      <input name="occupation" value="{{ receipe.occupation }}" type="text" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Address</label>
+      <input name="address" value="{{ receipe.address }}" type="text" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Religion</label>
+      <input name="religion" value="{{ receipe.religion }}" type="text" class="form-control">
+    </div>
 
-  <!-- inline toast container for AJAX feedback -->
+    <!-- 2. Case Details -->
+    <hr>
+    <h5>Case Details</h5>
+    <div class="mb-3">
+      <label class="form-label">Chief Complaints</label>
+      <textarea name="chief_complaints" class="form-control">{{ receipe.chief_complaints }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">History of Present Illness</label>
+      <textarea name="present_illness" class="form-control">{{ receipe.present_illness }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Past Medical History</label>
+      <textarea name="medical_history" class="form-control">{{ receipe.medical_history }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Family History</label>
+      <textarea name="family_history" class="form-control">{{ receipe.family_history }}</textarea>
+    </div>
+
+    <!-- 3. Personal History -->
+    <hr>
+    <h5>Personal History</h5>
+    <div class="row">
+      <div class="mb-3 col-md-6">
+        <label class="form-label">Appetite</label>
+        <input name="appetite" value="{{ receipe.appetite }}" type="text" class="form-control">
+      </div>
+      <div class="mb-3 col-md-6">
+        <label class="form-label">Thirst</label>
+        <input name="thirst" value="{{ receipe.thirst }}" type="text" class="form-control">
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3 col-md-6">
+        <label class="form-label">Cravings</label>
+        <input name="cravings" value="{{ receipe.cravings }}" type="text" class="form-control">
+      </div>
+      <div class="mb-3 col-md-6">
+        <label class="form-label">Aversions</label>
+        <input name="aversions" value="{{ receipe.aversions }}" type="text" class="form-control">
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3 col-md-6">
+        <label class="form-label">Bowel Habits</label>
+        <input name="bowel_habits" value="{{ receipe.bowel_habits }}" type="text" class="form-control">
+      </div>
+      <div class="mb-3 col-md-6">
+        <label class="form-label">Urine</label>
+        <input name="urine" value="{{ receipe.urine }}" type="text" class="form-control">
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3 col-md-6">
+        <label class="form-label">Sleep</label>
+        <input name="sleep" value="{{ receipe.sleep }}" type="text" class="form-control">
+      </div>
+      <div class="mb-3 col-md-6">
+        <label class="form-label">Dreams</label>
+        <input name="dreams" value="{{ receipe.dreams }}" type="text" class="form-control">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Perspiration</label>
+      <input name="perspiration" value="{{ receipe.perspiration }}" type="text" class="form-control">
+    </div>
+    <div class="row">
+      <div class="mb-3 col-md-6">
+        <label class="form-label">Thermal Reaction</label>
+        <input name="thermal_reaction" value="{{ receipe.thermal_reaction }}" type="text" class="form-control">
+      </div>
+      <div class="mb-3 col-md-6">
+        <label class="form-label">Habits</label>
+        <input name="habits" value="{{ receipe.habits }}" type="text" class="form-control">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Sexual History</label>
+      <input name="sexual_history" value="{{ receipe.sexual_history }}" type="text" class="form-control">
+    </div>
+
+    <!-- 4. Menstrual / Obstetric History -->
+    <hr>
+    <h5>Menstrual / Obstetric History</h5>
+    <div class="row">
+      <div class="mb-3 col-md-3">
+        <label class="form-label">Menarche Age</label>
+        <input name="menarche_age" value="{{ receipe.menarche_age }}" type="text" class="form-control">
+      </div>
+      <div class="mb-3 col-md-3">
+        <label class="form-label">Cycle</label>
+        <input name="cycle" value="{{ receipe.cycle }}" type="text" class="form-control">
+      </div>
+      <div class="mb-3 col-md-3">
+        <label class="form-label">Flow</label>
+        <input name="flow" value="{{ receipe.flow }}" type="text" class="form-control">
+      </div>
+      <div class="mb-3 col-md-3">
+        <label class="form-label">Menopause</label>
+        <input name="menopause" value="{{ receipe.menopause }}" type="text" class="form-control">
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3 col-md-4">
+        <label class="form-label">Gravida</label>
+        <input name="gravida" value="{{ receipe.gravida }}" type="text" class="form-control">
+      </div>
+      <div class="mb-3 col-md-4">
+        <label class="form-label">Para</label>
+        <input name="para" value="{{ receipe.para }}" type="text" class="form-control">
+      </div>
+      <div class="mb-3 col-md-4">
+        <label class="form-label">Abortions</label>
+        <input name="abortions" value="{{ receipe.abortions }}" type="text" class="form-control">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Full-term deliveries</label>
+      <input name="full_term_deliveries" value="{{ receipe.full_term_deliveries }}" type="text" class="form-control">
+    </div>
+
+    <!-- 5. Mental Generals -->
+    <hr>
+    <h5>Mental Generals / Psychological Profile</h5>
+    <div class="mb-3">
+      <textarea name="mental_generals" class="form-control">{{ receipe.mental_generals }}</textarea>
+    </div>
+
+    <!-- 6. General Physical Examination -->
+    <hr>
+    <h5>General Physical Examination</h5>
+    <div class="row">
+      <div class="mb-3 col-md-6">
+        <label class="form-label">Built</label>
+        <input name="built" value="{{ receipe.built }}" type="text" class="form-control">
+      </div>
+      <div class="mb-3 col-md-6">
+        <label class="form-label">Height</label>
+        <input name="height" value="{{ receipe.height }}" type="text" class="form-control">
+      </div>
+    </div>
+        <div class="row">
+      <div class="mb-3 col-md-4">
+        <label class="form-label">Weight</label>
+        <input name="weight" value="{{ receipe.weight }}" type="text" class="form-control">
+      </div>
+      <div class="mb-3 col-md-4">
+        <label class="form-label">Pulse</label>
+        <input name="pulse" value="{{ receipe.pulse }}" type="text" class="form-control">
+      </div>
+      <div class="mb-3 col-md-4">
+        <label class="form-label">BP</label>
+        <input name="bp" value="{{ receipe.bp }}" type="text" class="form-control">
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3 col-md-4">
+        <label class="form-label">Temperature</label>
+        <input name="temperature" value="{{ receipe.temperature }}" type="text" class="form-control">
+      </div>
+      <div class="mb-3 col-md-4">
+        <label class="form-label">Respiration</label>
+        <input name="respiration" value="{{ receipe.respiration }}" type="text" class="form-control">
+      </div>
+      <div class="mb-3 col-md-4">
+        <label class="form-label">Pallor / Cyanosis / Edema</label>
+        <input name="pallor_cyanosis_edema" value="{{ receipe.pallor_cyanosis_edema }}" type="text" class="form-control">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Tongue / Nails / Skin</label>
+      <input name="tongue_nails_skin" value="{{ receipe.tongue_nails_skin }}" type="text" class="form-control">
+    </div>
+
+    <!-- 7. Systemic Examination -->
+    <hr>
+    <h5>Systemic Examination</h5>
+    <div class="mb-3">
+      <label class="form-label">Respiratory System</label>
+      <textarea name="respiratory_system" class="form-control">{{ receipe.respiratory_system }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Cardiovascular System</label>
+      <textarea name="cardiovascular_system" class="form-control">{{ receipe.cardiovascular_system }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Gastrointestinal System</label>
+      <textarea name="gastrointestinal_system" class="form-control">{{ receipe.gastrointestinal_system }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Genitourinary System</label>
+      <textarea name="genitourinary_system" class="form-control">{{ receipe.genitourinary_system }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Nervous System</label>
+      <textarea name="nervous_system" class="form-control">{{ receipe.nervous_system }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Locomotor System</label>
+      <textarea name="locomotor_system" class="form-control">{{ receipe.locomotor_system }}</textarea>
+    </div>
+
+    <!-- 8. Diagnosis / Prescription -->
+    <hr>
+    <h5>Diagnosis / Prescription</h5>
+    <div class="mb-3">
+      <label class="form-label">Allopathic Diagnosis</label>
+      <textarea name="allopathic_diagnosis" class="form-control">{{ receipe.allopathic_diagnosis }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Miasmatic Diagnosis</label>
+      <input name="miasmatic_diagnosis" value="{{ receipe.miasmatic_diagnosis }}" type="text" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Totality of Symptoms</label>
+      <textarea name="totality_of_symptoms" class="form-control">{{ receipe.totality_of_symptoms }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Repertorization</label>
+      <textarea name="repertorization" class="form-control">{{ receipe.repertorization }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Chosen Remedy</label>
+      <input name="chosen_remedy" value="{{ receipe.chosen_remedy }}" type="text" class="form-control">
+    </div>
+    <div class="row">
+      <div class="mb-3 col-md-4">
+        <label class="form-label">Potency</label>
+        <input name="potency" value="{{ receipe.potency }}" type="text" class="form-control">
+      </div>
+      <div class="mb-3 col-md-4">
+        <label class="form-label">Repetition</label>
+        <input name="repetition" value="{{ receipe.repetition }}" type="text" class="form-control">
+      </div>
+      <div class="mb-3 col-md-4">
+        <label class="form-label">Follow-up date</label>
+        <input name="follow_up_date" value="{{ receipe.follow_up_date|date:'Y-m-d' }}" type="date" class="form-control">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Basis of Prescription</label>
+      <textarea name="basis_of_prescription" class="form-control">{{ receipe.basis_of_prescription }}</textarea>
+    </div>
+
+    <!-- 9. Image -->
+    <div class="mb-3">
+      <label class="form-label">Patient Image (leave blank to keep current)</label>
+      <input name="receipe_image" type="file" class="form-control">
+    </div>
+
+    <!-- Submit Button -->
+    <div class="d-grid">
+      <button type="submit" class="btn btn-primary-custom">Update</button>
+    </div>
+  </form>
+
+  <!-- Toast container for AJAX feedback -->
   <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index:1080">
     <div id="ajax-toast"></div>
   </div>
 
+  <!-- AJAX submit & toast logic -->
   <script>
     (function(){
       var form = document.querySelector('form');
       if(!form) return;
       form.addEventListener('submit', function(ev){
-        // simple client-side validation
-        var name = form.querySelector('[name="receipe_name"]').value.trim();
+        var name = form.querySelector('[name="name"]').value.trim();
         var caseNo = form.querySelector('[name="case_number"]').value.trim();
         if(!name || !caseNo){
           ev.preventDefault();
@@ -336,11 +344,9 @@
           return false;
         }
 
-        // if user has JS enabled, submit via fetch to get JSON response and show inline toast
         ev.preventDefault();
         var url = window.location.href;
         var formData = new FormData(form);
-        // get CSRF token from the form
         var csrfEl = form.querySelector('[name="csrfmiddlewaretoken"]');
         var csrfToken = csrfEl ? csrfEl.value : null;
         fetch(url, {
@@ -352,14 +358,12 @@
           if(!resp.ok){
             return resp.text().then(function(t){ throw new Error('Server error: '+(t||resp.status)); });
           }
-          // try parse JSON, otherwise show error text
           return resp.text().then(function(text){
             try{ return JSON.parse(text); }catch(e){ throw new Error(text || 'Invalid JSON response'); }
           });
         }).then(function(data){
           if(data && data.status === 'ok'){
             showToast(data.message || 'Updated', 'success');
-            // after short delay, redirect back with cache-busting param to force reload
             setTimeout(function(){
               var back = document.referrer || '/search/';
               var sep = back.indexOf('?') === -1 ? '?' : '&';
@@ -371,7 +375,6 @@
         }).catch(function(err){
           console.error('AJAX update error', err);
           showToast('Update failed: ' + (err && err.message) + '. Submitting normally...', 'warning');
-          // fallback to normal submit after short delay
           setTimeout(function(){
             form.removeEventListener('submit', arguments.callee);
             form.submit();
@@ -398,3 +401,4 @@
 
 </div>
 {% endblock %}
+
